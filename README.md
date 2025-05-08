@@ -44,7 +44,7 @@ You need to create and configure two files: `.auto.tfvars` for Terraform and `.e
     aws_region            = "your-aws-region"
     aws_access_key_id     = "your-access-key-id"
     aws_secret_access_key = "your-secret-access-key"
-    bucket_name = "your-unique-bucket-name" # Must be globally unique
+    bucket_name           = "your-unique-bucket-name" # Must be globally unique
     ```
 
 2.  **Create `./.env`:**<br><br>
