@@ -10,7 +10,7 @@ from src.utils.logging import setup_logger
 from src.utils.s3 import AsyncS3Client, get_async_s3_client
 from src.utils.types import YPDResponse
 
-setup_logger("src/main.log")
+setup_logger("main.log")
 logger = logging.getLogger("main")
 
 

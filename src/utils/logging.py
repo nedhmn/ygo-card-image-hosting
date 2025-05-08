@@ -1,13 +1,11 @@
 import logging
-from logging.handlers import RotatingFileHandler
+from logging.handlers import FileHandler
 from pathlib import Path
 
 
 def setup_logger(
     log_file: str | None = None,
     level: int = logging.INFO,
-    max_bytes: int = 32 * 1024 * 1024,
-    backup_count: int = 5,
 ) -> None:
     """Configure root logger with console and optional file output"""
     # Get the root logger
@@ -31,10 +29,8 @@ def setup_logger(
         path.parent.mkdir(parents=True, exist_ok=True)
 
         # Create file handler
-        file_handler = RotatingFileHandler(
+        file_handler = FileHandler(
             filename=log_file,
-            maxBytes=max_bytes,
-            backupCount=backup_count,
             encoding="utf-8",
         )
 
