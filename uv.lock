@@ -198,6 +198,18 @@ wheels = [
 ]
 
 [[package]]
+name = "botocore-stubs"
+version = "1.38.11"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "types-awscrt" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/26/ce/d43f8c1ccdbcf2e8e344f7f5d9ce2ef7d73f1c575b222708cea2ea0dee18/botocore_stubs-1.38.11.tar.gz", hash = "sha256:5898dd855ae152725d60ff48e1f400fc23d18fb0ff0b9bd4a45458af2c446ebe", size = 42272 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ea/08/f28869aac2280bc1a21fcf9c47e034f2339f840ab1b4f905dd5a7e4a189b/botocore_stubs-1.38.11-py3-none-any.whl", hash = "sha256:962c9eaeb7d1ae2287007d72eb2785cc92e58b10f53dbd749361556c7fa8e96c", size = 65603 },
+]
+
+[[package]]
 name = "certifi"
 version = "2025.4.26"
 source = { registry = "https://pypi.org/simple" }
@@ -629,6 +641,64 @@ wheels = [
 ]
 
 [[package]]
+name = "types-aioboto3"
+version = "14.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "botocore-stubs" },
+    { name = "types-aiobotocore" },
+    { name = "types-s3transfer" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8e/00/e6abcb83ff3e0f9b909ef84f1674bdb31c00f35d8c9e74e7487fa22c6d17/types_aioboto3-14.3.0.tar.gz", hash = "sha256:ba722ed63c54427e99bb3439c212576caecb42fa63aac593b6f63d60d42de170", size = 80279 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d4/f9/dbf7c43157e1d7ce63db163c567514eb719c8513973f6041372377d05478/types_aioboto3-14.3.0-py3-none-any.whl", hash = "sha256:017a9916e9ffdb48b5961d3f32d7a67cebb8c46dad53c778d2bca0fc47ac9087", size = 42091 },
+]
+
+[package.optional-dependencies]
+s3 = [
+    { name = "types-aiobotocore-s3" },
+]
+
+[[package]]
+name = "types-aiobotocore"
+version = "2.22.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "botocore-stubs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ad/e1/2ed95566257867d8916a6abec506ab7fc8ed4985a768e5578eb163ef3329/types_aiobotocore-2.22.0.tar.gz", hash = "sha256:04c6acd984f9a37d22db2ebf670ff84e55f6f227d3cc71e9b297720d4a71b718", size = 84173 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/63/fe/a4f672a70b964e902af18f7eafbad5e793710fe5726040218b953f4141e4/types_aiobotocore-2.22.0-py3-none-any.whl", hash = "sha256:54ffcf8d0144d71fa8b540f3997ae1a555ff3a61200d0c13b3db1c29dec730e5", size = 51827 },
+]
+
+[[package]]
+name = "types-aiobotocore-s3"
+version = "2.22.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/fa/e0/0b61783902ece7a2c7969e01a26d6baae831c0f4e502b4f266b3358592e9/types_aiobotocore_s3-2.22.0.tar.gz", hash = "sha256:47126576039e90cae4e917d5ba1ca2b6cd16f5228be88024a70753a55eb775f1", size = 74050 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/df/4e/33406bf5601768fca0c83ae7f824a78d344ef0800eeda2584690d0e05894/types_aiobotocore_s3-2.22.0-py3-none-any.whl", hash = "sha256:fe49add1dc882979e348f40e2ffe941f6cf2ba039abd7b3d0225a26a663f216e", size = 81427 },
+]
+
+[[package]]
+name = "types-awscrt"
+version = "0.26.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/db/29/d0597055f1b700193463361b4b2284cf4548acbb10287d6253ce429728d5/types_awscrt-0.26.1.tar.gz", hash = "sha256:aca96f889b3745c0e74f42f08f277fed3bf6e9baa2cf9b06a36f78d77720e504", size = 15537 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/da/c0/4708ee11a50d4e80c4dfb88dc2d6d69b1c296cd7397f1fe6352f119fd310/types_awscrt-0.26.1-py3-none-any.whl", hash = "sha256:176d320a26990efc057d4bf71396e05be027c142252ac48cc0d87aaea0704280", size = 19575 },
+]
+
+[[package]]
+name = "types-s3transfer"
+version = "0.12.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/fb/d5/830e9efe91a26601a2bebde6f299239d2d26e542f5d4b3bc7e8c23c81a3f/types_s3transfer-0.12.0.tar.gz", hash = "sha256:f8f59201481e904362873bf0be3267f259d60ad946ebdfcb847d092a1fa26f98", size = 14096 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fc/43/6097275152463ac9bacf1e00aab30bc6682bf45f6a031be8bf029c030ba2/types_s3transfer-0.12.0-py3-none-any.whl", hash = "sha256:101bbc5b7f00b71512374df881f480fc6bf63c948b5098ab024bf3370fbfb0e8", size = 19553 },
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.13.2"
 source = { registry = "https://pypi.org/simple" }
@@ -776,6 +846,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "tenacity" },
+    { name = "types-aioboto3", extra = ["s3"] },
 ]
 
 [package.dev-dependencies]
@@ -792,6 +863,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.11.4" },
     { name = "pydantic-settings", specifier = ">=2.9.1" },
     { name = "tenacity", specifier = ">=9.1.2" },
+    { name = "types-aioboto3", extras = ["s3"], specifier = ">=14.3.0" },
 ]
 
 [package.metadata.requires-dev]

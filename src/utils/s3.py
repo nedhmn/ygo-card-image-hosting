@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
 import aioboto3
+from types_aiobotocore_s3.client import S3Client
 
 from src.config import Settings
 
@@ -10,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class AsyncS3Client:
-    def __init__(self, bucket_name: str, s3_client: aioboto3.client):
+    def __init__(self, bucket_name: str, s3_client: S3Client):
         self.bucket_name = bucket_name
         self.s3_client = s3_client
 
@@ -36,12 +37,12 @@ class AsyncS3Client:
 
 @asynccontextmanager
 async def get_async_s3_session(
-    settings: Settings, bucket_name: str
-) -> AsyncGenerator[None, None]:
+    settings: Settings,
+) -> AsyncGenerator[AsyncS3Client, None]:
     session = aioboto3.Session(
         aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
         aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
         region_name=settings.AWS_REGION,
     )
     async with session.client("s3") as s3_client:
-        yield AsyncS3Client(bucket_name, s3_client)
+        yield AsyncS3Client(settings.BUCKET_NAME, s3_client)

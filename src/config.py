@@ -20,6 +20,8 @@ class Settings(BaseSettings):
         description="The end release date for the YGO cards to add to s3."
     )
 
+    # Custom field validation
+    # ref: https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator
     @field_validator("START_DATE", "END_DATE", mode="after")
     @classmethod
     def ensure_correct_date_fmt(cls, value: str) -> str:
