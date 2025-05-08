@@ -11,10 +11,3 @@ wheels/
 .cache
 .mypy_cache
 .ruff_cache
-
-# Terraform
-.auto.tfvars
-.terraform
-*.lock.hcl
-*.tfstate
-*.tfstate.backup
