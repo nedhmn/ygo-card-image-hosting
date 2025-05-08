@@ -1,9 +1,9 @@
 ---
 title: YGO Card Image Hosting
-description: A project to automatically download, archive, and serve Yu-Gi-Oh! card images.
+description: Automate the download, archiving, and hosting of Yu-Gi-Oh! card images.
 template: splash
 hero:
-  tagline: A project to automatically download, archive, and serve Yu-Gi-Oh! card images.
+  tagline: Automate the download, archiving, and hosting of Yu-Gi-Oh! card images.
   image:
     file: ../../assets/houston.webp
   actions:
@@ -14,4 +14,59 @@ hero:
       link: https://github.com/nedhmn/ygo-card-image-hosting
       icon: external
       variant: minimal
+      attrs:
+        target: _blank
 ---
+
+import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+## Why Use This Project?
+
+Building and maintaining a large collection of card images can be manual and time-consuming. `ygo-card-image-hosting` automates this process, saving you significant effort.
+
+## Key Features at a Glance
+
+<CardGrid stagger>
+  <Card title="Terraform Automation" icon="seti:terraform">
+    Automates the setup of AWS S3 and CloudFront infrastructure.
+  </Card>
+  <Card title="Smart Archiving" icon="seti:image">
+    Skips existing images in S3 on subsequent runs for efficiency.
+  </Card>
+  <Card title="Date & Size Filtering" icon="setting">
+    Configure downloads based on card release dates and image sizes.
+  </Card>
+  <Card title="CDN Delivery" icon="rocket">
+    Serve images globally via AWS CloudFront for fast access.
+  </Card>
+  <Card title="Dockerized" icon="seti:docker">
+    Runs in a consistent environment using Docker and Docker Compose.
+  </Card>
+</CardGrid>
+
+## Ready to Get Started?
+
+Our comprehensive documentation will guide you from initial setup and configuration through running the project and customizing your card image archive.
+
+<CardGrid>
+  <LinkCard
+    title="Introduction"
+    href="/ygo-card-image-hosting/getting-started/introduction/"
+    description="Learn what ygo-card-image-hosting is and what it does."
+  />
+  <LinkCard
+    title="Installation"
+    href="/ygo-card-image-hosting/getting-started/installation/"
+    description="Install the necessary prerequisites and clone the repository."
+  />
+  <LinkCard
+    title="Configuration"
+    href="/ygo-card-image-hosting/getting-started/configuration/"
+    description="Set up your AWS credentials and project settings."
+  />
+  <LinkCard
+    title="Running the Service"
+    href="/ygo-card-image-hosting/getting-started/running-the-project/"
+    description="Run the Terraform and Docker scripts to build your archive."
+  />
+</CardGrid>
