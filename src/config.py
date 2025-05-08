@@ -14,10 +14,12 @@ class Settings(BaseSettings):
 
     # YGOPRODECK
     START_DATE: str = Field(
-        description="The start release date for the YGO cards to add to s3."
+        default="2002-03-01",
+        description="The start release date for the YGO cards to add to s3.",
     )
     END_DATE: str = Field(
-        description="The end release date for the YGO cards to add to s3."
+        default="2002-04-01",
+        description="The end release date for the YGO cards to add to s3.",
     )
 
     # Custom field validation
@@ -43,11 +45,36 @@ class Settings(BaseSettings):
             f"dateregion={self.DATE_REGION}"
         )
 
+    CARD_SIZE: Literal["FULL", "SMALL", "CROPPED"] = Field(
+        default="FULL", description="Card image size to upload to s3."
+    )
+
+    @property
+    def CARD_IMAGE_KEY(
+        self,
+    ) -> Literal["image_url", "image_url_small", "image_url_cropped"]:
+        """The card_images key name for different card sizes from ygoprodeck's api."""
+        if self.CARD_SIZE == "FULL":
+            return "image_url"
+        elif self.CARD_SIZE == "SMALL":
+            return "image_url_small"
+        else:
+            return "image_url_cropped"
+
     # AWS
     AWS_REGION: str
     AWS_ACCESS_KEY_ID: str
     AWS_SECRET_ACCESS_KEY: str
     BUCKET_NAME: str
+
+    # Misc
+    AIOMETER_MAX_PER_SECOND: int = Field(
+        default=19,
+        description="Maximum requests per second - rate limited by ygoprodeck at 20 per second.",
+    )
+    AIOMETER_MAX_AT_ONCE: int = Field(
+        default=19, description="Maximum requests at once."
+    )
 
 
 settings = Settings()

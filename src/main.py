@@ -1,4 +1,5 @@
 import asyncio
+import functools
 import logging
 
 import aiometer
@@ -25,6 +26,16 @@ async def ygo_card_seeder() -> None:
             logger.info("All card images are already in s3!")
             return
 
+        # Upload cards to s3
+        await aiometer.run_on_each(
+            async_fn=functools.partial(
+                upload_card_to_s3, http_client=http_client, s3_client=s3_client
+            ),
+            args=card_urls,
+            max_per_second=settings.AIOMETER_MAX_PER_SECOND,
+            max_at_once=settings.AIOMETER_MAX_AT_ONCE,
+        )
+
 
 async def get_card_urls_to_upload(
     http_client: httpx.AsyncClient, s3_client: AsyncS3Client
@@ -46,19 +57,39 @@ async def get_card_urls_to_upload(
 async def get_card_image_urls(http_client: httpx.AsyncClient) -> list[str]:
     # Get cards from ygoprodeck
     response = await http_client.get(settings.YGOPRODECK_URL)
-    data: YPDResponse = response.json()
+    response.raise_for_status()
 
     # Return only the `image_url` from each card_images entry
+    data: YPDResponse = response.json()
     return [
-        image["image_url"]
+        image[settings.CARD_IMAGE_KEY]
         for card in data.get("data", [])
         for image in card.get("card_images", [])
-        if "image_url" in image
+        if settings.CARD_IMAGE_KEY in image
     ]
 
 
-async def upload_card_to_s3() -> None:
-    pass
+async def upload_card_to_s3(
+    url: str, http_client: httpx.AsyncClient, s3_client: AsyncS3Client
+) -> None:
+    # Download the card image
+    response = await http_client.get(url)
+    response.raise_for_status()
+
+    # Get the image bytes and content type
+    body = response.content
+    content_type = response.headers.get("Content-Type")
+
+    if content_type != "image/jpeg":
+        logger.warning("URL %s had an invalid Content-Type", url)
+        return
+
+    # Remove prefix to get s3 key
+    prefix = "https://images.ygoprodeck.com/"
+    s3_key = url[len(prefix) :]
+
+    # Upload the image to S3.
+    await s3_client.put_object(s3_key, body, content_type)
 
 
 if __name__ == "__main__":
