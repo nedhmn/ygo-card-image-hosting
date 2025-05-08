@@ -1,0 +1,62 @@
+---
+title: Running the Hosting Service
+description: Set up AWS infrastructure and run the image archiving script.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+Set up your AWS infrastructure and run the image archiving script using the steps below.
+
+## Set up AWS Infrastructure with Terraform
+
+From the project root, run the Terraform script:
+
+```bash
+bash scripts/run_terraform.sh
+```
+
+Follow the prompts.
+
+<Aside>
+  CloudFront setup can take up to 15 minutes to apply after `terraform apply`
+  completes.
+</Aside>
+
+The script will print the CloudFront url. **Save this url.**
+
+## Run the Image Archiving Script
+
+From the project root, build and run the Docker container:
+
+```bash
+docker compose build
+docker compose up
+```
+
+Logs will show the download/upload progress.
+
+<Aside>
+  The YGOPRODeck API has a 20 requests/sec rate limit. Downloads may take
+  several minutes.
+</Aside>
+
+## Verifying the Setup
+
+After both steps complete, test by visiting the URL for "Dark Magician" in your browser:
+
+```
+<your-cloudfront-prefix-url>/images/cards/46986414.jpg
+```
+
+Replace `<your-cloudfront-prefix-url>` with the saved url.
+
+<Aside>
+  **Important:** The URL path depends on your `CARD_SIZE` in `.env`:
+  <ul>
+    <li>`FULL` (default): `/images/cards/`</li>
+    <li>`SMALL`: `/images/cards_small/`</li>
+    <li>`CROPPED`: `/images/cards_cropped/`</li>
+  </ul>
+</Aside>
+
+If you see the image, your setup is working.

@@ -8,25 +8,26 @@ export default defineConfig({
   base: "/ygo-card-image-hosting/",
   integrations: [
     starlight({
-      title: "My Docs",
+      title: "YGO Card Image Hosting",
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/withastro/starlight",
+          href: "https://github.com/nedhmn/ygo-card-image-hosting",
         },
       ],
       sidebar: [
         {
-          label: "Guides",
+          label: "Getting Started",
           items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
+            { label: "Introduction", slug: "getting-started/introduction" },
+            { label: "Installation", slug: "getting-started/installation" },
+            { label: "Configuration", slug: "getting-started/configuration" },
+            {
+              label: "Running the Project",
+              slug: "getting-started/running-the-project",
+            },
           ],
-        },
-        {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
         },
       ],
     }),

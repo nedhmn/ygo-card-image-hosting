@@ -1,0 +1,22 @@
+---
+title: Introduction
+description: Get a high-level overview of the ygo-card-image-hosting project, its features, and technologies.
+---
+
+Welcome to `ygo-card-image-hosting`, a project that automates the process of downloading, archiving, and hosting Yu-Gi-Oh! card images. This tool is designed for efficiently creating and managing your own collection of card images accessible via a content delivery network.
+
+## Key Features
+
+- **Automated AWS Infrastructure:** Sets up S3 for storage and CloudFront for content delivery using Terraform.
+- **Efficient Image Archiving:** Downloads card images from [ygoprodeck.com](https://ygoprodeck.com/api-guide/) and uploads them to S3.
+- **Configurable Downloads:** Allows users to specify date ranges and preferred image sizes.
+- **Containerized Execution:** Runs the core logic within Docker for portability and consistency.
+
+## Technology Used
+
+- **Terraform:** Infrastructure as Code for managing AWS resources.
+- **AWS S3:** Scalable object storage for storing card images.
+- **AWS CloudFront:** Content Delivery Network for fast and efficient image delivery.
+- **Python:** The programming language for the image downloading and uploading script.
+- **uv:** A fast dependency installer and resolver for Python.
+- **Docker & Docker Compose:** For creating and managing the project's containerized environment.

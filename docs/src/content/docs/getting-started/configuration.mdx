@@ -1,0 +1,55 @@
+---
+title: Configuration
+description: Set up .env and .auto.tfvars for your ygo-card-image-hosting environment.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+To run `ygo-card-image-hosting`, configure your AWS credentials and download settings using two files: `.auto.tfvars` (for Terraform) and `.env` (for the application script).
+
+## Terraform Configuration
+
+Create a file named `.auto.tfvars` in the `./terraform` directory with your AWS details and desired S3 bucket name:
+
+```hcl
+aws_region            = "your-aws-region"
+aws_access_key_id     = "your-access-key-id"
+aws_secret_access_key = "your-secret-access-key"
+bucket_name           = "your-unique-bucket-name"
+```
+
+<Aside>
+  **Important:** The `bucket_name` must be globally unique across all of AWS S3.
+</Aside>
+
+## Application Configuration
+
+Create a file named `.env` at the root of the project directory. Use `.env.example` as a reference.
+
+```dotenv
+# YGOPRODECK
+START_DATE=
+END_DATE=
+DATE_REGION=
+CARD_SIZE=
+
+# AWS
+AWS_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+BUCKET_NAME=
+```
+
+- The AWS variables should match your `.auto.tfvars`.
+- **YGOPRODECK variables (optional):**
+  - `START_DATE`: Card release date range start (`YYYY-mm-dd`, default `2002-03-01`).
+  - `END_DATE`: Card release date range end (`YYYY-mm-dd`, default `2002-04-01`).
+  - `DATE_REGION`: Release date region (`tcg` or `ocg`, default `tcg`).
+  - `CARD_SIZE`: Image size (`FULL`, `SMALL`, `CROPPED`, default `FULL`).
+
+<Aside type="tip">
+  Leaving YGOPRODECK variables empty uses defaults, downloading a small set of
+  cards (under 200 JPGs).
+</Aside>
+
+With configuration complete, you're ready to run the service.
