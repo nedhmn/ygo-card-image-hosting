@@ -29,6 +29,19 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: "Guides",
+          items: [
+            {
+              label: "Serving GOAT Format Cards",
+              slug: "guides/serving-goat-format-cards",
+            },
+            {
+              label: "Serving HAT Format Cards",
+              slug: "guides/serving-hat-format-cards",
+            },
+          ],
+        },
       ],
     }),
   ],
