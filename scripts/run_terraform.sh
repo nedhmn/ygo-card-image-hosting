@@ -5,6 +5,7 @@ set -x
 
 cd terraform
 
+terraform fmt
 terraform init
 terraform plan
 terraform apply
