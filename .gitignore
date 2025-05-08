@@ -1,13 +1,20 @@
-# Python-generated files
+.env
+
+# Python
 __pycache__/
 *.py[oc]
 build/
 dist/
 wheels/
 *.egg-info
-
 .venv
 .cache
-.env
 .mypy_cache
 .ruff_cache
+
+# Terraform
+.auto.tfvars
+.terraform
+*.lock.hcl
+*.tfstate
+*.tfstate.backup
