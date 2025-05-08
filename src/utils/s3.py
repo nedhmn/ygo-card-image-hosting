@@ -36,7 +36,7 @@ class AsyncS3Client:
 
 
 @asynccontextmanager
-async def get_async_s3_session(
+async def get_async_s3_client(
     settings: Settings,
 ) -> AsyncGenerator[AsyncS3Client, None]:
     session = aioboto3.Session(

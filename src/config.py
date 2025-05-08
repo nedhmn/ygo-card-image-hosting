@@ -33,6 +33,16 @@ class Settings(BaseSettings):
 
     DATE_REGION: Literal["tcg", "ocg"] = Field(default="tcg")
 
+    @property
+    def YGOPRODECK_URL(self) -> str:
+        # Create ygoprodeck url
+        return (
+            "https://db.ygoprodeck.com/api/v7/cardinfo.php?"
+            f"startdate={self.START_DATE}&"
+            f"enddate={self.END_DATE}&"
+            f"dateregion={self.DATE_REGION}"
+        )
+
     # AWS
     AWS_REGION: str
     AWS_ACCESS_KEY_ID: str
