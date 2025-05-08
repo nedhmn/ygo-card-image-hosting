@@ -1,0 +1,37 @@
+---
+title: Serving HAT Format Cards
+description: Configure ygo-card-image-hosting for HAT format card images.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+Configure `ygo-card-image-hosting` to archive and serve card images for [HAT Format](https://hatformatmeta.com/).
+
+## What is HAT Format?
+
+HAT Format is a Yu-Gi-Oh! format from the summer of 2014. The format commonly played online specifically emulates the 2014 North American World Championship Qualifier (NAWCQ), using the April 2014 Banlist, a card pool up to and including the **Realm of Light Structure Deck**, and North American Master Rule 2 rulings.
+
+## Configuring for HAT Format
+
+Update your `.env` file with these values:
+
+```dotenv
+# YGOPRODECK
+START_DATE=2002-03-01
+END_DATE=2014-05-30
+DATE_REGION=tcg
+```
+
+## Running with HAT Format
+
+Ensure initial [Terraform setup](/ygo-card-image-hosting/getting-started/running-the-project/#set-up-aws-infrastructure-with-terraform) is done (only once).
+
+Run the script from the project root:
+
+```bash
+docker compose up --build
+```
+
+<Aside>The script skips images already in S3, only adding new ones.</Aside>
+
+Access images via your CloudFront URL with the correct path based on `CARD_SIZE`.
