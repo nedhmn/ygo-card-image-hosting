@@ -4,7 +4,14 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "aioboto3>=14.3.0",
+    "aiometer>=1.0.0",
+    "httpx>=0.28.1",
+    "pydantic>=2.11.4",
+    "pydantic-settings>=2.9.1",
+    "types-aioboto3[s3]>=14.3.0",
+]
 
 [dependency-groups]
 dev = [
@@ -14,3 +21,11 @@ dev = [
 
 [tool.uv]
 cache-dir = ".cache"
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+strict = true
+
+[tool.ruff]
+target-version = "py312"

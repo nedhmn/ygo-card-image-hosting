@@ -1,0 +1,7 @@
+services:
+  uploader:
+    build:
+      context: .
+    command: ["bash", "scripts/run_image_uploader.sh"]
+    env_file:
+      - ./.env
